@@ -17,3 +17,6 @@ a {
 * {
   box-sizing: border-box;
 }
+.btnBorder{
+  border-width: 0.1rem;
+}
