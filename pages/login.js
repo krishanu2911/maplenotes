@@ -7,6 +7,3 @@ export default function login() {
         </div>
     )
 }
-export const getStaticProps = async () => {
-    
-}
