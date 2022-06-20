@@ -5,11 +5,8 @@ export default function ProtectedRoutes({children}) {
     const {user} = useAuth();
     const router = useRouter();
     useEffect(() => {
-        // console.log(userToken)
-        console.log(user)
         if(!user){
-            // console.log(userToken,"useEffect")
-            router.push("/signup")
+            router.push("/login")
         }
     }, [])
     

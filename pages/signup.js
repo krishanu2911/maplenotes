@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
+import { validateForm } from "../utils/validation.js";
 export default function signup() {
   const [error, setError] = useState({
     email: {
@@ -22,7 +23,6 @@ export default function signup() {
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const router = useRouter();
-  const emailRegex = new RegExp(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/);
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -35,17 +35,6 @@ export default function signup() {
       },
     }));
     setUserDetail({ ...userDetail, [name]: value });
-  };
-  const validateForm = (name, value) => {
-    switch (name) {
-      case "email":
-        return !emailRegex.test(value);
-      case "password":
-        console.log(value.length);
-        return !value.length > 6;
-      default:
-        return true;
-    }
   };
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -64,7 +53,7 @@ export default function signup() {
   };
   return (
     <div className=" flex flex-col justify-between items-center w-full min-h-screen">
-      <section className={` flex flex-col gap-6  mt-20 w-96`}>
+      <section className=" flex flex-col gap-6  mt-20 w-96">
         <header className="text-center flex flex-col gap-4">
           <h1 className="text-3xl font-bold">Sign up for an account</h1>
           <h3 className="text-sm text-gray-500">
