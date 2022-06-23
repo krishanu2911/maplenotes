@@ -9,6 +9,7 @@ const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoading(false);
+        console.log(user)
         setUser({
           uid: user.uid,
           email: user.email,
