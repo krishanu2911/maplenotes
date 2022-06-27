@@ -3,7 +3,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, db } from "../config/firebase.js";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc ,arrayUnion, query,  getDoc} from "firebase/firestore";
 const signUpNewUser = async (email, fullName, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -31,4 +31,22 @@ const storeUserToDb = async (fullName, email, password, userId) => {
     console.log(err);
   }
 };
-export { signUpNewUser, storeUserToDb, loginUser };
+const addNote = async (noteData, userId) => {
+  console.log("calling add note function")
+  try {
+    await updateDoc(doc(db, "users", userId), {
+      notes: arrayUnion({...noteData}) })
+      console.log("added note")
+  } catch (err) {
+    console.log(err)
+  }
+}
+const allUserNotes = async (userId) => {
+  try{
+    const userData = await getDoc(doc(db,"users",userId))
+    return userData.data()
+  } catch (err) {
+    console.log(err)
+  }
+}
+export { signUpNewUser, storeUserToDb, loginUser ,addNote,allUserNotes};
