@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import {addNote , allUserNotes } from "../utils/firebaseService";
+import {addNote , allUserNotes , editNote} from "../utils/firebaseService";
 import { useUserData } from "../context/UserDataContext";
 function NoteForm() {
   const initialNoteData = {
@@ -14,9 +14,9 @@ function NoteForm() {
     priority: "High",
     title: "",
   }
-  const [userNote, setUserNote] = useState(initialNoteData);
+  // const [userNote, setUserNote] = useState(initialNoteData);
   const { user } = useAuth();
-  const { setUserNotes } = useUserData();
+  const { setUserNotes , userNote, setUserNote , isEditing , setIsEditing , oldNote } = useUserData();
   const handleChange = (e) => {
     console.log("hello")
     const name = e.target.name;
@@ -26,11 +26,18 @@ function NoteForm() {
   const submitHandler = async (e) => {
     e.preventDefault();
     setUserNote(initialNoteData)
-    await addNote(userNote, user.uid)
-    allUserNotes(user.uid).then(data => setUserNotes(data.notes) )
+    setIsEditing(false)
+    if(isEditing && oldNote !== userNote) {
+      console.log("editing..........")
+      await editNote(oldNote , userNote, user.uid)
+      allUserNotes(user.uid).then(data => setUserNotes(data.notes) )
+    }else  {
+      await addNote(userNote, user.uid)
+      allUserNotes(user.uid).then(data => setUserNotes(data.notes) )
+    }
   }
   return (
-    <div className=" w-96 bg-slate-600 p-4 rounded-lg mt-2">
+    <div className=" w-96 bg-slate-600 p-4 rounded-lg mt-2 mb-8">
       <form className=" w-full flex flex-col gap-3" onSubmit={(e) => submitHandler(e)}>
         <input
           type="text"
@@ -77,7 +84,7 @@ function NoteForm() {
           <option value="Chores">Chores</option>
           <option value="Exercise">Exercise</option>
         </select>
-        <button>Add button</button>
+        <button>{isEditing ? "Edit" : "Add Note"}</button>
       </form>
     </div>
   );

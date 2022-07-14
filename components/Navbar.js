@@ -20,7 +20,7 @@ export default function Navbar() {
         >
           Home
         </button>
-        {route.pathname === "/" && (
+        {(route.pathname !== "/login" || route.pathname !== "/signup") && (
           <button
             onClick={async () => {
               await signOut(auth);
