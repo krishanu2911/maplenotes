@@ -37,7 +37,7 @@ function NoteForm() {
     }
   }
   return (
-    <div className=" w-96 bg-slate-600 p-4 rounded-lg mt-2 mb-8">
+    <div className=" w-96 bg-slate-700 p-4 rounded-lg mt-2 mb-8">
       <form className=" w-full flex flex-col gap-3" onSubmit={(e) => submitHandler(e)}>
         <input
           type="text"
@@ -57,7 +57,7 @@ function NoteForm() {
           onChange={(e) => handleChange(e)}
           required
         />
-        <label>Priority</label>
+        <label className="font-bold text-white">Priority</label>
         <select
           name="priority"
           id="priority"
@@ -70,7 +70,7 @@ function NoteForm() {
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
         </select>
-        <label>label</label>
+        <label className="font-bold text-white">label</label>
         <select
           name="label"
           id="label"
@@ -84,7 +84,7 @@ function NoteForm() {
           <option value="Chores">Chores</option>
           <option value="Exercise">Exercise</option>
         </select>
-        <button>{isEditing ? "Edit" : "Add Note"}</button>
+        <button className=" p-4 bg-gray-900 rounded-md text-white font-bold">{isEditing ? "Edit" : "Add Note"}</button>
       </form>
     </div>
   );
