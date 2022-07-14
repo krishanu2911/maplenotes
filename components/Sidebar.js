@@ -3,7 +3,7 @@ import { BiHome, BiTrash, BiArchive } from "react-icons/bi";
 function Sidebar() {
   return (
     <div className="p-4 w-fit">
-      <ul className="flex flex-row text-3xl gap-5 md:flex-col">
+      <ul className="flex flex-row text-3xl gap-5 flex-wrap md:flex-col ">
         <li className="flex items-center gap-5 cursor-pointer">
           <BiHome />
           Home

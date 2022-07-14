@@ -39,6 +39,7 @@ function NoteForm() {
           value={userNote.title}
           className=" rounded p-4 bg-slate-500 border-5"
           onChange={(e) => handleChange(e)}
+          required
         />
         <textarea
           type="text"
@@ -47,6 +48,7 @@ function NoteForm() {
           className=" rounded p-4 bg-slate-500 min-h-24 outline-hidden border-hidden"
           value={userNote.content}
           onChange={(e) => handleChange(e)}
+          required
         />
         <label>Priority</label>
         <select

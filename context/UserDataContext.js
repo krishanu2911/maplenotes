@@ -6,7 +6,7 @@ const UserDataContextProvider = ({ children }) => {
   const [userNotes, setUserNotes] = useState([]);
   const { user } = useAuth();
   useEffect(() => {
-    allUserNotes(user.uid).then((data) => setUserNotes(data.notes));
+    allUserNotes(user?.uid).then((data) => setUserNotes(data?.notes));
   }, []);
   return (
     <UserDataContext.Provider value={{ userNotes, setUserNotes }}>
