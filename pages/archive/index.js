@@ -1,12 +1,12 @@
 import React from 'react'
-import { NoteCard } from '../components/NoteCard';
-import { useUserData } from "../context/UserDataContext";
-const archive = () => {
+import { NoteCard } from '../../components/NoteCard';
+import { useUserData } from "../../context/UserDataContext";
+const Index = () => {
     const { filteredNotes } = useUserData();
     return (
         <div className='p-4'>
             {
-                filteredNotes.map((note) => {
+                filteredNotes?.map((note) => {
                     console.log(note.isArchived)
                     return note.isArchived && !note.isTrashed && <NoteCard noteData={note} />
                 })
@@ -14,4 +14,4 @@ const archive = () => {
         </div>
     )
 }
-export default archive;
+export default Index;

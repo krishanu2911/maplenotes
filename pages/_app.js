@@ -12,17 +12,21 @@ function MyApp({ Component, pageProps }) {
     <>
       <AuthContextProvider>
         <UserDataContextProvider>
-          <Navbar />
-          <div className=" bg-slate-400 min-h-screen flex flex-col md:flex-row">
-          <Sidebar />
+          
           {publicPaths.includes(route.pathname) ? (
+            <div className=" bg-slate-400 min-h-screen flex flex-col md:flex-row">
             <Component {...pageProps} />
+            </div>
           ) : (
             <ProtectedRoutes>
+              <Navbar />
+              <div className=" bg-slate-400 min-h-screen flex flex-col md:flex-row">
+              <Sidebar />
               <Component {...pageProps} />
+              </div>
             </ProtectedRoutes>
+
           )}
-          </div>
         </UserDataContextProvider>
       </AuthContextProvider>
     </>

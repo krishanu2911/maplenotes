@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
-import { loginUser } from "../utils/firebaseService";
+import { loginUser } from "../../utils/firebaseService";
 import { useRouter } from "next/router";
-import { validateForm } from "../utils/validation";
+import { validateForm } from "../../utils/validation";
 import Link from "next/link";
-export default function login() {
+export default function Index() {
   const [showPass, setShowPass] = useState(false);
   const [loginDetail, setLoginDetail] = useState({
     email: "",
@@ -43,6 +43,7 @@ export default function login() {
   return (
     <div className="flex flex-col justify-between items-center w-full min-h-screen">
       <section className=" flex flex-col gap-6  mt-20 w-96">
+      <h1 className=" text-center text-4xl font-bold">Maple Notes</h1>
         <header className="text-center flex flex-col gap-4">
           <h1 className="text-3xl font-bold">Login to MapleNotes</h1>
           <h3 className="text-sm text-gray-500">
@@ -84,7 +85,7 @@ export default function login() {
             </button>
           </form>
           <h1 className=" text-center mt-8">
-            Don't have an account?
+            Dont have an account?
             <Link href="/signup">
               <span className=" cursor-pointer font-bold">Sign Up</span>
             </Link>
