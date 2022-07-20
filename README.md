@@ -1,3 +1,40 @@
+<h1>
+<b>Maple Note</b>
+</h1>
+
+<div>
+Maple Notes is a notes app in which all your note are Securly stored. 
+</div><br/>
+
+
+## Live Link
+
+### Check out the live website here: [MapleNote](https://maplenotes.vercel.app/)
+
+<br/>
+
+## Features
+
+- Home Page
+- Archive Page
+- Trash Page
+- Filter:
+ - By Label
+ - By Priority
+ - By Date
+
+<br/>
+
+## Built With
+
+- Next JS
+- Firebase
+- Tailwind
+- React
+
+<br/>
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
