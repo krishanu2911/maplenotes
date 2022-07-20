@@ -57,6 +57,8 @@ const UserDataContextProvider = ({ children }) => {
   )(userNotes);
   console.log(filteredNotes);
   useEffect(() => {
+  },[filterState])
+  useEffect(() => {
     allUserNotes(user?.uid).then((data) => setUserNotes(data?.notes));
   }, []);
   return (

@@ -1,16 +1,16 @@
 import React from 'react'
-import { NoteCard } from '../components/NoteCard';
-import { useUserData } from "../context/UserDataContext";
-const trash = () => {
+import { NoteCard } from '../../components/NoteCard';
+import { useUserData } from "../../context/UserDataContext";
+const Index = () => {
     const { filteredNotes } = useUserData();
     return (
         <div className='p-4'>
             {
-                filteredNotes.map((note) => {
+                filteredNotes?.map((note) => {
                     return note.isTrashed && <NoteCard noteData={note} />
                 })
             }
         </div>
     )
 }
-export default trash
+export default Index

@@ -89,10 +89,4 @@ function NoteForm() {
     </div>
   );
 }
-// const ReactQuill = dynamic(
-// 	() => {
-// 		return import('react-quill');
-// 	},
-// 	{ ssr: false }
-// );
 export { NoteForm };
