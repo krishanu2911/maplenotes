@@ -2,11 +2,11 @@ import React from 'react'
 import { NoteCard } from '../components/NoteCard';
 import { useUserData } from "../context/UserDataContext";
 const trash = () => {
-    const { userNotes } = useUserData();
+    const { filteredNotes } = useUserData();
     return (
         <div className='p-4'>
             {
-                userNotes.map((note) => {
+                filteredNotes.map((note) => {
                     return note.isTrashed && <NoteCard noteData={note} />
                 })
             }
