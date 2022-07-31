@@ -22,6 +22,7 @@ export default function Index() {
   });
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [showError , setShowError] = useState(false);
   const router = useRouter();
   const handleChange = (e) => {
     const name = e.target.name;
@@ -49,6 +50,8 @@ export default function Index() {
         userDetail.password
       );
       router.push("/");
+    }else {
+      setShowError(true);
     }
   };
   return (
@@ -67,11 +70,12 @@ export default function Index() {
               <input
                 type="text"
                 className="btnBorder rounded-lg border-slate-300 py-2 px-2 w-full"
-                placeholder="Username or email"
+                placeholder="email"
                 name="email"
                 onChange={(e) => handleChange(e)}
                 required
               />
+              { showError && error.email.isError  && <h4 className="text-red-600">Please Enter Valid Email</h4>}
               <input
                 type="text"
                 className="btnBorder rounded-lg border-slate-300 py-2 px-2 w-full mt-3"
@@ -93,6 +97,7 @@ export default function Index() {
                   {showPass ? <BsEye /> : <BsEyeSlash />}
                 </div>
               </div>
+              { (showError && error.password.isError ) ? <h4 className="text-red-600">Please Enter Valid Email</h4> : <h4 className=" text-slate-700">Enter password greater than 6 length</h4>}
               <div className="btnBorder rounded-lg  border-slate-300 py-2 px-2 w-full  mt-3 justify-between flex items-center">
                 <input
                   type={showConfirmPass ? "text" : "password"}

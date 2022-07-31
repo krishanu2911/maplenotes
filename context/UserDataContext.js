@@ -19,6 +19,7 @@ const UserDataContextProvider = ({ children }) => {
   const [isEditing , setIsEditing] = useState(false);
   const [oldNote , setOldNote] = useState({});
   const [userNote, setUserNote] = useState(initialNoteData);
+  const [filteredNotes, setFilteredNotes] = useState([]);
   const { user } = useAuth();
   const initialData = {
     sortByPriority: "",
@@ -48,18 +49,26 @@ const UserDataContextProvider = ({ children }) => {
     }
   };
   const [filterState, filterDispatch] = useReducer(filterReducer, initialData);
-
-  const filteredNotes = Compose(
-    filterState,
-    labelFilter,
-    priorityFilter,
-    dateFilter
-  )(userNotes);
-  console.log(filteredNotes);
   useEffect(() => {
-  },[filterState])
+    setFilteredNotes(Compose(
+      filterState,
+      labelFilter,
+      priorityFilter,
+      dateFilter
+    )(userNotes));
+  },[filterState , userNotes])
   useEffect(() => {
-    allUserNotes(user?.uid).then((data) => setUserNotes(data?.notes));
+    if(user){
+    allUserNotes(user?.uid).then((data) => {
+      setUserNotes(data?.notes)
+      setFilteredNotes(Compose(
+        filterState,
+        labelFilter,
+        priorityFilter,
+        dateFilter
+      )(data?.notes));
+    });
+    }
   }, []);
   return (
     <UserDataContext.Provider value={{filteredNotes, userNotes, setUserNotes ,userNote, setUserNote ,isEditing , setIsEditing ,oldNote , setOldNote ,filterState, filterDispatch }}>

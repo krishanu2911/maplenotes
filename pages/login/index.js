@@ -5,6 +5,7 @@ import { loginUser } from "../../utils/firebaseService";
 import { useRouter } from "next/router";
 import { validateForm } from "../../utils/validation";
 import Link from "next/link";
+import { async } from "@firebase/util";
 export default function Index() {
   const [showPass, setShowPass] = useState(false);
   const [loginDetail, setLoginDetail] = useState({
@@ -19,6 +20,7 @@ export default function Index() {
       isError: true,
     },
   });
+  const [showError , setShowError] = useState(false);
   const router = useRouter();
   const handleChange = (e) => {
     const name = e.target.name;
@@ -38,8 +40,14 @@ export default function Index() {
     if (!error.email.isError && !error.password.isError) {
       await loginUser(loginDetail.email, loginDetail.password);
       router.push("/");
+    }else {
+      setShowError(true);
     }
   };
+  const guestLoginHandler = async() => {
+    await loginUser("krish@gmail.com","krishanu")
+    router.push("/");
+  }
   return (
     <div className="flex flex-col justify-between items-center w-full min-h-screen">
       <section className=" flex flex-col gap-6  mt-20 w-96">
@@ -56,11 +64,12 @@ export default function Index() {
               <input
                 type="text"
                 className="btnBorder rounded-lg border-slate-300 py-2 px-2 w-full"
-                placeholder="Username or email"
+                placeholder="email"
                 name="email"
                 onChange={(e) => handleChange(e)}
                 required
               />
+              { showError && error.email.isError  && <h4 className="text-red-600">Please Enter Valid Email</h4>}
               <div className="btnBorder rounded-lg  border-slate-300 py-2 px-2 w-full  mt-3 justify-between flex items-center">
                 <input
                   type={showPass ? "text" : "password"}
@@ -80,10 +89,11 @@ export default function Index() {
                 )}
               </div>
             </div>
-            <button className=" w-full bg-blue-700 rounded-lg p-3 text-white font-semibold mt-8">
+            <button className=" w-full bg-blue-600 rounded-lg p-3 text-white font-semibold mt-8">
               Login
             </button>
           </form>
+          <button className=" w-full bg-blue-600 rounded-lg p-3 text-white font-semibold mt-8" onClick={guestLoginHandler}>Login As Guest</button>
           <h1 className=" text-center mt-8">
             Dont have an account?
             <Link href="/signup">
