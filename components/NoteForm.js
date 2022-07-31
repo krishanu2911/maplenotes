@@ -6,7 +6,7 @@ function NoteForm() {
   const initialNoteData = {
     bgColor: "white",
     content: "",
-    date: new Date().toLocaleString(),
+    date: Date.now(),
     isArchived: false,
     isPinned: false,
     isTrashed: false,

@@ -22,7 +22,9 @@ function MyApp({ Component, pageProps }) {
               <Navbar />
               <div className=" bg-slate-400 min-h-screen flex flex-col md:flex-row">
               <Sidebar />
+              <div className="w-full">
               <Component {...pageProps} />
+              </div>
               </div>
             </ProtectedRoutes>
 

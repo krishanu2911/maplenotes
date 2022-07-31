@@ -14,6 +14,7 @@ import styles from "./NoteCard.module.css";
 function NoteCard({ noteData }) {
   const { setUserNotes, setUserNote, setIsEditing, setOldNote } = useUserData();
   const { user } = useAuth();
+  const noteCardDate = new Date(noteData.date).toLocaleString();
   return (
     <div
       className={`w-fit p-4 max-w-sm ${
@@ -136,7 +137,7 @@ function NoteCard({ noteData }) {
           </div>
         )}
       </div>
-      <div>{noteData.date}</div>
+      <div>{new Date(noteData.date).toLocaleString()}</div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ const validateForm = (name, value) => {
     case "email":
       return !emailRegex.test(value);
     case "password":
-      return !value.length > 6;
+      return !(value.length >= 6);
     default:
       return true;
   }
